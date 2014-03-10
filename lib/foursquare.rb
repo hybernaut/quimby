@@ -16,6 +16,8 @@ require "foursquare/tip"
 require "foursquare/photo"
 require "foursquare/location"
 require "foursquare/category"
+require "foursquare/list"
+require "foursquare/list_proxy"
 
 module Foursquare
   class Error < StandardError ; end
