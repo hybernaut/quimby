@@ -60,15 +60,15 @@ module Foursquare
     def twitter
       contact["twitter"]
     end
-    
+
     def facebook
       contact["facebook"]
     end
-    
+
     def twitter?
       !twitter.blank?
     end
-    
+
     def facebook?
       !facebook.blank?
     end
@@ -86,7 +86,7 @@ module Foursquare
       fetch unless @json.has_key?("mayorships")
       @json["mayorships"]["items"]
     end
-    
+
     # https://developer.foursquare.com/docs/users/checkins.html
     # https://developer.foursquare.com/docs/explore.html#req=users/self/checkins
     def checkins(options={})
@@ -94,7 +94,7 @@ module Foursquare
         Foursquare::Checkin.new(@foursquare, item)
       end
     end
-    
+
     def all_checkins
       count = 250
       offset = 0
@@ -142,6 +142,12 @@ module Foursquare
     def tips(options={})
       @foursquare.get("users/#{id}/tips", options)["tips"]["items"].map do |item|
         Foursquare::Tip.new(@foursquare, item)
+      end
+    end
+
+    def lists(options={})
+      @foursquare.get("users/#{id}/lists", options)["lists"]["groups"].map do |item|
+        Foursquare::List.new(@foursquare, item)
       end
     end
   end
