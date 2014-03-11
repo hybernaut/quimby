@@ -3,7 +3,7 @@ module Foursquare
 
     def initialize(foursquare, json)
       @foursquare, @json = foursquare, json
-      @json["items"].map do |item|
+      @json["items"] = @json["items"].map do |item|
         Foursquare::List.new(@foursquare, item)
       end
     end
