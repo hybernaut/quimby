@@ -9,8 +9,8 @@ module Foursquare
     end
 
     def all(options={})
-      @foursquare.get("users/self/lists", options)["lists"]["items"].map do |json|
-        Foursquare::List.new(@foursquare, json)
+      @foursquare.get("users/self/lists", options)["lists"]["groups"].map do |json|
+        Foursquare::Group.new(@foursquare, json)
       end
     end
 
