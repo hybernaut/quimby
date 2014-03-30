@@ -52,5 +52,10 @@ module Foursquare
         Foursquare::User.new(@foursquare, @json["user"])
       end
     end
+
+    def photos
+      @json["photos"]["items"].map{|jp| Foursquare::Photo.new(@foursquare, jp)}
+    end
+
   end
 end

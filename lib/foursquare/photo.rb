@@ -12,6 +12,11 @@ module Foursquare
       @json["name"]
     end
 
+    def user_name
+      u = @json["user"]
+      "#{u['firstName']} #{u['lastName']}"
+    end
+
     def created_at
       @json["createdAt"]
     end
@@ -23,30 +28,38 @@ module Foursquare
     def sizes
       @json["sizes"]
     end
-    
+
+    def square_500
+      @square_500 ||= @json["sizes"]["items"].select { |i| i["width"] == 500 }.first
+    end
+
+    def square_500_url
+      square_500 && square_500["url"]
+    end
+
     def square_300
       @square_300 ||= @json["sizes"]["items"].select { |i| i["width"] == 300 }.first
     end
-    
+
     def square_300_url
-      square_300["url"]
+      square_300 && square_300["url"]
     end
-    
+
     def square_100
       @square_100 ||= @json["sizes"]["items"].select { |i| i["width"] == 100 }.first
     end
-    
+
     def square_100_url
-      square_100["url"]
+      square_100 && square_100["url"]
     end
-    
+
     def square_36
       @square_36 ||= @json["sizes"]["items"].select { |i| i["width"] == 36 }.first
     end
-    
+
     def square_36_url
-      square_36["url"]
+      square_36 && square_36["url"]
     end
-    
+
   end
 end
